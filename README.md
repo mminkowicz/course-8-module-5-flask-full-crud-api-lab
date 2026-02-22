@@ -161,6 +161,91 @@ Test your endpoints using Postman or curl:
 
 ---
 
+## API Routes
+
+### `GET /`
+
+Returns a welcome message.
+
+**Response** (`200 OK`):
+
+```json
+{
+  "message": "Welcome to the Event Management API"
+}
+```
+
+### `GET /events`
+
+Returns all events as a JSON array.
+
+**Response** (`200 OK`):
+
+```json
+[
+  { "id": 1, "title": "Tech Meetup" },
+  { "id": 2, "title": "Python Workshop" }
+]
+```
+
+### `POST /events`
+
+Creates a new event. Requires a JSON body with a `title` field.
+
+**Request Body**:
+
+```json
+{ "title": "Hackathon" }
+```
+
+**Response** (`201 Created`):
+
+```json
+{ "id": 3, "title": "Hackathon" }
+```
+
+**Error** (`400 Bad Request`) — if `title` is missing:
+
+```json
+{ "error": "Title is required" }
+```
+
+### `PATCH /events/<id>`
+
+Updates the title of an existing event.
+
+**Request Body**:
+
+```json
+{ "title": "Hackathon 2025" }
+```
+
+**Response** (`200 OK`):
+
+```json
+{ "id": 1, "title": "Hackathon 2025" }
+```
+
+**Error** (`404 Not Found`) — if the event ID does not exist:
+
+```json
+{ "error": "Event not found" }
+```
+
+### `DELETE /events/<id>`
+
+Removes an event by its ID.
+
+**Response**: `204 No Content` (empty body on success).
+
+**Error** (`404 Not Found`) — if the event ID does not exist:
+
+```json
+{ "error": "Event not found" }
+```
+
+---
+
 ## Conclusion
 
 After completing this lab, you will:
